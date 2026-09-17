@@ -1,4 +1,90 @@
-Installation
+Installatifrom manim import *
+
+class PifagorIsbati(Scene):
+    def construct(self):
+
+        # Tərəflər
+        a = 2.4
+        b = 3.2
+        c = 4.0
+
+        # Üçbucaq
+        A = LEFT * 3 + DOWN * 2
+        B = LEFT * 3 + UP * 2
+        C = RIGHT * 2 + DOWN * 2
+
+        triangle = Polygon(
+            A, B, C,
+            color=WHITE,
+            stroke_width=3
+        )
+
+        # Tərəf yazıları
+        label_a = MathTex("a").next_to(A, DOWN)
+        label_b = MathTex("b").next_to(B, LEFT)
+        label_c = MathTex("c").next_to(triangle, UP)
+
+        # Başlanğıc
+        self.play(Create(triangle))
+        self.play(
+            Write(label_a),
+            Write(label_b),
+            Write(label_c)
+        )
+        self.wait(1)
+
+        # a²
+        square_a = Square(
+            side_length=2,
+            color=WHITE
+        ).move_to(RIGHT * 1.5 + DOWN * 2)
+
+        a2 = MathTex("a^2").move_to(square_a)
+
+        # b²
+        square_b = Square(
+            side_length=2,
+            color=WHITE
+        ).move_to(LEFT * 1.5 + UP * 1.8)
+
+        b2 = MathTex("b^2").move_to(square_b)
+
+        self.play(
+            Create(square_a),
+            Write(a2)
+        )
+        self.play(
+            Create(square_b),
+            Write(b2)
+        )
+
+        self.wait(1)
+
+        # c²
+        square_c = Square(
+            side_length=3.5,
+            color=WHITE
+        ).move_to(RIGHT * 1 + UP * 0.5)
+
+        c2 = MathTex("c^2").move_to(square_c)
+
+        self.play(Create(square_c))
+        self.play(Write(c2))
+
+        self.wait(1)
+
+        # Son düstur
+        formula = MathTex(
+            "a^2+b^2=c^2",
+            font_size=60
+        ).to_edge(DOWN)
+
+        self.play(
+            Write(formula),
+            run_time=2
+        )
+
+        self.wait(3)on
 ============
 
 Depending on your use case, different installation options are recommended:
